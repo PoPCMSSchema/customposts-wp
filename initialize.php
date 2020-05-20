@@ -1,2 +1,2 @@
 <?php
-\PoP\ContentWP\Component::init();
+//\PoP\ContentWP\Component::initialize();
