@@ -1,1 +1,7 @@
 services:
+    content_entity_type_api:
+        class: \PoP\ContentWP\TypeAPIs\ContentEntityTypeAPI
+        public: true
+    content_entity_type_list_api:
+        class: \PoP\ContentWP\TypeAPIs\ContentEntityTypeListAPI
+        public: true
