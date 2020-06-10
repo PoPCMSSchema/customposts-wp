@@ -4,13 +4,15 @@ declare(strict_types=1);
 
 namespace PoP\ContentWP\TypeAPIs;
 
+use PoP\Content\Types\Status;
+
 class PostTypeAPIUtils
 {
     protected static $cmsToPoPPostStatusConversion = [
-        'publish' => POP_POSTSTATUS_PUBLISHED,
-        'pending' => POP_POSTSTATUS_PENDING,
-        'draft' => POP_POSTSTATUS_DRAFT,
-        'trash' => POP_POSTSTATUS_TRASH,
+        'publish' => Status::PUBLISHED,
+        'pending' => Status::PENDING,
+        'draft' => Status::DRAFT,
+        'trash' => Status::TRASH,
     ];
     protected static $popToCMSPostStatusConversion;
 

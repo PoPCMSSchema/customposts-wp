@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace PoP\ContentWP\TypeAPIs;
 
-use WP_Post;
 use function get_post;
 use function apply_filters;
 use function get_post_status;
@@ -14,6 +13,7 @@ use PoP\ContentWP\TypeAPIs\PostTypeAPIUtils;
 use PoP\ComponentModel\TypeDataResolvers\APITypeDataResolverTrait;
 use PoP\PostsWP\TypeResolverPickers\ContentEntityUnionTypeHelpers;
 use PoP\QueriedObject\TypeAPIs\TypeAPIUtils;
+use PoP\Content\Types\Status;
 
 /**
  * Methods to interact with the Type, to be implemented by the underlying CMS
@@ -212,7 +212,7 @@ class PostTypeAPI
             $post,
             $postID,
         ) = $this->getPostObjectAndID($postObjectOrID);
-        if ($this->getStatus($postObjectOrID) == POP_POSTSTATUS_PUBLISHED) {
+        if ($this->getStatus($postObjectOrID) == Status::PUBLISHED) {
             return \get_permalink($postID);
         }
 
