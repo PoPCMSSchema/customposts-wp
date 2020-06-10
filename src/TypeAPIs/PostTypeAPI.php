@@ -11,7 +11,7 @@ use PoP\Hooks\Facades\HooksAPIFacade;
 use PoP\Content\ComponentConfiguration;
 use PoP\ContentWP\TypeAPIs\PostTypeAPIUtils;
 use PoP\ComponentModel\TypeDataResolvers\APITypeDataResolverTrait;
-use PoP\PostsWP\TypeResolverPickers\ContentEntityUnionTypeHelpers;
+use PoP\ContentWP\TypeResolverPickers\ContentEntityUnionTypeHelpers;
 use PoP\QueriedObject\TypeAPIs\TypeAPIUtils;
 use PoP\Content\Types\Status;
 
