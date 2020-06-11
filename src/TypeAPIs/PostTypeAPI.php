@@ -59,7 +59,7 @@ class PostTypeAPI
         $posts = \get_posts($query);
         return count($posts);
     }
-    protected function convertPostsQuery($query, array $options = [])
+    protected function convertPostsQuery($query, array $options = []): array
     {
         if ($return_type = $options['return-type']) {
             if ($return_type == POP_RETURNTYPE_IDS) {
