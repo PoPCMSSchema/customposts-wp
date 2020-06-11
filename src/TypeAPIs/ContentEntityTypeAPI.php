@@ -51,21 +51,4 @@ class ContentEntityTypeAPI implements ContentEntityTypeAPIInterface
     {
         return $this->getPostTypeAPI()->getExcerpt($objectOrID);
     }
-
-    // public function getContentEntities($query, array $options = []): array
-    // {
-    //     return $this->getPostTypeAPI()->getPosts($query, $options);
-    // }
-    // public function getContentEntityCount(array $query = [], array $options = []): int
-    // {
-    //     return $this->getPostTypeAPI()->getPostCount($query, $options);
-    // }
-    // public function getContentEntries($query, array $options = []): array
-    // {
-    //     return $this->getPostTypeAPI()->getPosts($query, $options);
-    // }
-    // public function getContentEntryCount(array $query = [], array $options = []): int
-    // {
-    //     return $this->getPostTypeAPI()->getPostCount($query, $options);
-    // }
 }
