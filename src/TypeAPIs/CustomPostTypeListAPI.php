@@ -19,7 +19,7 @@ class CustomPostTypeListAPI implements CustomPostTypeListAPIInterface
         return $instanceManager->getInstance(PostTypeAPI::class);
     }
 
-    public function getContentEntities($query, array $options = []): array
+    public function getCustomPosts($query, array $options = []): array
     {
         return $this->getPostTypeAPI()->getPosts($query, $options);
     }
