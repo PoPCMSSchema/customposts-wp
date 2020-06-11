@@ -11,7 +11,7 @@ use PoP\Hooks\Facades\HooksAPIFacade;
 use PoP\Content\ComponentConfiguration;
 use PoP\ContentWP\TypeAPIs\PostTypeAPIUtils;
 use PoP\ComponentModel\TypeDataResolvers\APITypeDataResolverTrait;
-use PoP\ContentWP\TypeResolverPickers\ContentEntityUnionTypeHelpers;
+use PoP\ContentWP\TypeResolverPickers\CustomPostUnionTypeHelpers;
 use PoP\QueriedObject\TypeAPIs\TypeAPIUtils;
 use PoP\Content\Types\Status;
 
@@ -110,7 +110,7 @@ class PostTypeAPI
             // }
             unset($query['post-types']);
         } elseif ($unionTypeResolverClass = $query['types-from-union-resolver-class']) {
-            $query['post_type'] = ContentEntityUnionTypeHelpers::getTargetTypeResolverPostTypes(
+            $query['post_type'] = CustomPostUnionTypeHelpers::getTargetTypeResolverPostTypes(
                 $unionTypeResolverClass
             );
             unset($query['types-from-union-resolver-class']);
@@ -126,7 +126,7 @@ class PostTypeAPI
             // Maybe restrict the limit, if higher than the max limit
             $limit = TypeAPIUtils::getLimitOrMaxLimit(
                 $query['limit'],
-                ComponentConfiguration::getContentEntityListMaxLimit()
+                ComponentConfiguration::getCustomPostListMaxLimit()
             );
 
             // Assign the limit as the required attribute

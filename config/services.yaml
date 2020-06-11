@@ -1,7 +1,7 @@
 services:
     content_entity_type_api:
-        class: \PoP\ContentWP\TypeAPIs\ContentEntityTypeAPI
+        class: \PoP\ContentWP\TypeAPIs\CustomPostTypeAPI
         public: true
     content_entity_type_list_api:
-        class: \PoP\ContentWP\TypeAPIs\ContentEntityTypeListAPI
+        class: \PoP\ContentWP\TypeAPIs\CustomPostTypeListAPI
         public: true

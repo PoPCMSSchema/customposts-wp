@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace PoP\ContentWP\TypeResolverPickers;
 
-interface ContentEntityTypeResolverPickerInterface
+interface CustomPostTypeResolverPickerInterface
 {
     /**
      * Maybe cast the object of type `WP_Post` returned by function `get_posts`, to a different object type

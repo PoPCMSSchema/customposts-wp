@@ -5,13 +5,13 @@ declare(strict_types=1);
 namespace PoP\ContentWP\TypeAPIs;
 
 use PoP\ContentWP\TypeAPIs\PostTypeAPI;
-use PoP\Content\TypeAPIs\ContentEntityTypeAPIInterface;
+use PoP\Content\TypeAPIs\CustomPostTypeAPIInterface;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 
 /**
  * Methods to interact with the Type, to be implemented by the underlying CMS
  */
-class ContentEntityTypeAPI implements ContentEntityTypeAPIInterface
+class CustomPostTypeAPI implements CustomPostTypeAPIInterface
 {
     protected function getPostTypeAPI(): PostTypeAPI
     {
