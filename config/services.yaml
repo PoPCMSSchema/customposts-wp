@@ -1,7 +1,7 @@
 services:
     custom_post_type_api:
-        class: \PoP\ContentWP\TypeAPIs\CustomPostTypeAPI
+        class: \PoP\CustomPostsWP\TypeAPIs\CustomPostTypeAPI
         public: true
     custom_post_type_list_api:
-        class: \PoP\ContentWP\TypeAPIs\CustomPostTypeListAPI
+        class: \PoP\CustomPostsWP\TypeAPIs\CustomPostTypeListAPI
         public: true

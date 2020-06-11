@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace PoP\ContentWP\TypeAPIs;
+namespace PoP\CustomPostsWP\TypeAPIs;
 
-use PoP\ContentWP\TypeAPIs\PostTypeAPI;
-use PoP\Content\TypeAPIs\CustomPostTypeAPIInterface;
+use PoP\CustomPostsWP\TypeAPIs\PostTypeAPI;
+use PoP\CustomPosts\TypeAPIs\CustomPostTypeAPIInterface;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 
 /**

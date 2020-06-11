@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace PoP\ContentWP\TypeResolverPickers;
+namespace PoP\CustomPostsWP\TypeResolverPickers;
 
 interface CustomPostTypeResolverPickerInterface
 {

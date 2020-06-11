@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace PoP\ContentWP\TypeResolverPickers;
+namespace PoP\CustomPostsWP\TypeResolverPickers;
 
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
-use PoP\ContentWP\TypeResolverPickers\CustomPostTypeResolverPickerInterface;
+use PoP\CustomPostsWP\TypeResolverPickers\CustomPostTypeResolverPickerInterface;
 
 /**
  * In the context of WordPress, "Custom Posts" are all posts (eg: posts, pages, attachments, events, etc)

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace PoP\ContentWP;
+namespace PoP\CustomPostsWP;
 
 use PoP\Root\Component\AbstractComponent;
 use PoP\Root\Component\YAMLServicesTrait;
@@ -18,7 +18,7 @@ class Component extends AbstractComponent
     public static function getDependedComponentClasses(): array
     {
         return [
-            \PoP\Content\Component::class,
+            \PoP\CustomPosts\Component::class,
             \PoP\EngineWP\Component::class,
         ];
     }

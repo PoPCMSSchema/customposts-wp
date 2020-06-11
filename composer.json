@@ -1,12 +1,12 @@
 {
-    "name": "getpop/content-wp",
+    "name": "getpop/custom-posts-wp",
     "type": "library",
-    "description": "Implementation for WordPress of contracts from package \"Content\"",
+    "description": "Implementation for WordPress of contracts from package \"Custom Posts\"",
     "keywords": [
         "PoP",
-        "content-wp"
+        "custom-posts-wp"
     ],
-    "homepage": "https://github.com/PoPSchema/content-wp",
+    "homepage": "https://github.com/PoPSchema/custom-posts-wp",
     "license": "MIT",
     "authors": [
         {
@@ -19,7 +19,7 @@
     "prefer-stable": true,
     "require": {
         "php" : "~7.1",
-        "getpop/content": "dev-master",
+        "getpop/custom-posts": "dev-master",
         "getpop/engine-wp": "dev-master"
     },
     "require-dev": {
@@ -28,12 +28,12 @@
     },
     "autoload": {
         "psr-4": {
-            "PoP\\ContentWP\\": "src"
+            "PoP\\CustomPostsWP\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "PoP\\ContentWP\\": "tests"
+            "PoP\\CustomPostsWP\\": "tests"
         }
     },
     "scripts": {
