@@ -17,7 +17,7 @@ Implementation for WordPress of contracts from package "Custom Posts"
 Via Composer
 
 ``` bash
-composer require getpop/custom-posts-wp
+composer require getpop/customposts-wp
 ```
 
 ## Usage
@@ -61,17 +61,17 @@ If you discover any security related issues, please email leo@getpop.org instead
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
 
-[ico-version]: https://img.shields.io/packagist/v/getpop/custom-posts-wp.svg?style=flat-square
+[ico-version]: https://img.shields.io/packagist/v/getpop/customposts-wp.svg?style=flat-square
 [ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
-[ico-travis]: https://img.shields.io/travis/getpop/custom-posts-wp/master.svg?style=flat-square
-[ico-scrutinizer]: https://img.shields.io/scrutinizer/coverage/g/getpop/custom-posts-wp.svg?style=flat-square
-[ico-code-quality]: https://img.shields.io/scrutinizer/g/getpop/custom-posts-wp.svg?style=flat-square
-[ico-downloads]: https://img.shields.io/packagist/dt/getpop/custom-posts-wp.svg?style=flat-square
+[ico-travis]: https://img.shields.io/travis/getpop/customposts-wp/master.svg?style=flat-square
+[ico-scrutinizer]: https://img.shields.io/scrutinizer/coverage/g/getpop/customposts-wp.svg?style=flat-square
+[ico-code-quality]: https://img.shields.io/scrutinizer/g/getpop/customposts-wp.svg?style=flat-square
+[ico-downloads]: https://img.shields.io/packagist/dt/getpop/customposts-wp.svg?style=flat-square
 
-[link-packagist]: https://packagist.org/packages/getpop/custom-posts-wp
-[link-travis]: https://travis-ci.org/getpop/custom-posts-wp
-[link-scrutinizer]: https://scrutinizer-ci.com/g/getpop/custom-posts-wp/code-structure
-[link-code-quality]: https://scrutinizer-ci.com/g/getpop/custom-posts-wp
-[link-downloads]: https://packagist.org/packages/getpop/custom-posts-wp
+[link-packagist]: https://packagist.org/packages/getpop/customposts-wp
+[link-travis]: https://travis-ci.org/getpop/customposts-wp
+[link-scrutinizer]: https://scrutinizer-ci.com/g/getpop/customposts-wp/code-structure
+[link-code-quality]: https://scrutinizer-ci.com/g/getpop/customposts-wp
+[link-downloads]: https://packagist.org/packages/getpop/customposts-wp
 [link-author]: https://github.com/leoloso
 [link-contributors]: ../../contributors
