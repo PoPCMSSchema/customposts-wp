@@ -7,7 +7,7 @@ namespace PoP\CustomPostsWP\TypeAPIs;
 /**
  * Methods to interact with the Type, to be implemented by the underlying CMS
  */
-class PostTypeAPIHelpers
+class CustomPostTypeAPIHelpers
 {
     public static function getCustomPostObjectAndID($postObjectOrID): array
     {

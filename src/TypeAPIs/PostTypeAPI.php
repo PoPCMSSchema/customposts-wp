@@ -4,16 +4,16 @@ declare(strict_types=1);
 
 namespace PoP\CustomPostsWP\TypeAPIs;
 
-use function get_post;
 use function apply_filters;
 use function get_post_status;
+use PoP\CustomPosts\Types\Status;
 use PoP\Hooks\Facades\HooksAPIFacade;
 use PoP\CustomPosts\ComponentConfiguration;
+use PoP\QueriedObject\TypeAPIs\TypeAPIUtils;
 use PoP\CustomPostsWP\TypeAPIs\PostTypeAPIUtils;
+use PoP\CustomPostsWP\TypeAPIs\CustomPostTypeAPIHelpers;
 use PoP\ComponentModel\TypeDataResolvers\APITypeDataResolverTrait;
 use PoP\CustomPostsWP\TypeResolverPickers\CustomPostUnionTypeHelpers;
-use PoP\QueriedObject\TypeAPIs\TypeAPIUtils;
-use PoP\CustomPosts\Types\Status;
 
 /**
  * Methods to interact with the Type, to be implemented by the underlying CMS
@@ -228,7 +228,7 @@ class PostTypeAPI
     }
     protected function getCustomPostObjectAndID($postObjectOrID): array
     {
-        return PostTypeAPIHelpers::getCustomPostObjectAndID($postObjectOrID);
+        return CustomPostTypeAPIHelpers::getCustomPostObjectAndID($postObjectOrID);
     }
 
     public function getTitle($postObjectOrID): ?string
