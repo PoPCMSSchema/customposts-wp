@@ -228,17 +228,7 @@ class PostTypeAPI
     }
     protected function getPostObjectAndID($postObjectOrID): array
     {
-        if (is_object($postObjectOrID)) {
-            $post = $postObjectOrID;
-            $postID = $post->ID;
-        } else {
-            $postID = $postObjectOrID;
-            $post = get_post($postID);
-        }
-        return [
-            $post,
-            $postID,
-        ];
+        return PostTypeAPIHelpers::getPostObjectAndID($postObjectOrID);
     }
 
     public function getTitle($postObjectOrID): ?string
