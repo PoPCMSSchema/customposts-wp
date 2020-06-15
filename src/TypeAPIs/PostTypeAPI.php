@@ -10,7 +10,7 @@ use PoP\CustomPosts\Types\Status;
 use PoP\Hooks\Facades\HooksAPIFacade;
 use PoP\CustomPosts\ComponentConfiguration;
 use PoP\QueriedObject\TypeAPIs\TypeAPIUtils;
-use PoP\CustomPostsWP\TypeAPIs\PostTypeAPIUtils;
+use PoP\CustomPostsWP\TypeAPIs\CustomPostTypeAPIUtils;
 use PoP\CustomPostsWP\TypeAPIs\CustomPostTypeAPIHelpers;
 use PoP\ComponentModel\TypeDataResolvers\APITypeDataResolverTrait;
 use PoP\CustomPostsWP\TypeResolverPickers\CustomPostUnionTypeHelpers;
@@ -37,7 +37,7 @@ class PostTypeAPI
     public function getStatus($postObjectOrID): ?string
     {
         $status = get_post_status($postObjectOrID);
-        return PostTypeAPIUtils::convertPostStatusFromCMSToPoP($status);
+        return CustomPostTypeAPIUtils::convertPostStatusFromCMSToPoP($status);
     }
     public function getPosts($query, array $options = []): array
     {
@@ -75,12 +75,12 @@ class PostTypeAPI
             if (is_array($query['post-status'])) {
                 // doing get_posts can accept an array of values
                 $query['post_status'] = array_map(
-                    [PostTypeAPIUtils::class, 'convertPostStatusFromPoPToCMS'],
+                    [CustomPostTypeAPIUtils::class, 'convertPostStatusFromPoPToCMS'],
                     $query['post-status']
                 );
             } else {
                 // doing wp_insert/update_post accepts a single value
-                $query['post_status'] = PostTypeAPIUtils::convertPostStatusFromPoPToCMS($query['post-status']);
+                $query['post_status'] = CustomPostTypeAPIUtils::convertPostStatusFromPoPToCMS($query['post-status']);
             }
             unset($query['post-status']);
         }
@@ -90,7 +90,7 @@ class PostTypeAPI
 
             // Make sure the post can also be draft or pending
             if (!isset($query['post_status'])) {
-                $query['post_status'] = PostTypeAPIUtils::getCMSPostStatuses();
+                $query['post_status'] = CustomPostTypeAPIUtils::getCMSPostStatuses();
             }
         }
         if (isset($query['post-types'])) {

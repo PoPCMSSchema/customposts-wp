@@ -6,7 +6,7 @@ namespace PoP\CustomPostsWP\TypeAPIs;
 
 use PoP\CustomPosts\Types\Status;
 
-class PostTypeAPIUtils
+class CustomPostTypeAPIUtils
 {
     protected static $cmsToPoPPostStatusConversion = [
         'publish' => Status::PUBLISHED,
