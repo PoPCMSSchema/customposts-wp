@@ -211,7 +211,7 @@ class PostTypeAPI
         list(
             $post,
             $postID,
-        ) = $this->getPostObjectAndID($postObjectOrID);
+        ) = $this->getCustomPostObjectAndID($postObjectOrID);
         if ($this->getStatus($postObjectOrID) == Status::PUBLISHED) {
             return \get_permalink($postID);
         }
@@ -226,9 +226,9 @@ class PostTypeAPI
     {
         return \get_the_excerpt($postObjectOrID);
     }
-    protected function getPostObjectAndID($postObjectOrID): array
+    protected function getCustomPostObjectAndID($postObjectOrID): array
     {
-        return PostTypeAPIHelpers::getPostObjectAndID($postObjectOrID);
+        return PostTypeAPIHelpers::getCustomPostObjectAndID($postObjectOrID);
     }
 
     public function getTitle($postObjectOrID): ?string
@@ -236,7 +236,7 @@ class PostTypeAPI
         list(
             $post,
             $postID,
-        ) = $this->getPostObjectAndID($postObjectOrID);
+        ) = $this->getCustomPostObjectAndID($postObjectOrID);
         return apply_filters('the_title', $post->post_title, $postID);
     }
 
@@ -245,7 +245,7 @@ class PostTypeAPI
         list(
             $post,
             $postID,
-        ) = $this->getPostObjectAndID($postObjectOrID);
+        ) = $this->getCustomPostObjectAndID($postObjectOrID);
         return apply_filters('the_content', $post->post_content);
     }
 
@@ -254,7 +254,7 @@ class PostTypeAPI
         list(
             $post,
             $postID,
-        ) = $this->getPostObjectAndID($postObjectOrID);
+        ) = $this->getCustomPostObjectAndID($postObjectOrID);
         return $post->post_date;
     }
 
@@ -263,7 +263,7 @@ class PostTypeAPI
         list(
             $post,
             $postID,
-        ) = $this->getPostObjectAndID($postObjectOrID);
+        ) = $this->getCustomPostObjectAndID($postObjectOrID);
         return $post->post_modified;
     }
 }
