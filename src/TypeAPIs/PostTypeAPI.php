@@ -42,19 +42,10 @@ class PostTypeAPI
 
     public function getCustomPosts($query, array $options = []): array
     {
-        return $this->getPosts($query, $options);
-    }
-    public function getCustomPostCount(array $query = [], array $options = []): int
-    {
-        return $this->getPostCount($query, $options);
-    }
-    public function getPosts($query, array $options = []): array
-    {
-        // Convert the parameters
         $query = $this->convertPostsQuery($query, $options);
         return (array) \get_posts($query);
     }
-    public function getPostCount(array $query = [], array $options = []): int
+    public function getCustomPostCount(array $query = [], array $options = []): int
     {
         // Convert parameters
         $options['return-type'] = POP_RETURNTYPE_IDS;
