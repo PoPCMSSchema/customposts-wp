@@ -20,16 +20,16 @@ class CustomPostUnionTypeHelpers
      */
     public static function getTargetTypeResolverPostTypes(string $unionTypeResolverClass)
     {
-        $postTypes = [];
+        $customPostTypes = [];
         $instanceManager = InstanceManagerFacade::getInstance();
         $unionTypeResolver = $instanceManager->getInstance($unionTypeResolverClass);
         $typeResolverPickers = $unionTypeResolver->getTypeResolverPickers();
         foreach ($typeResolverPickers as $typeResolverPicker) {
             // The picker should implement interface CustomPostTypeResolverPickerInterface
             if ($typeResolverPicker instanceof CustomPostTypeResolverPickerInterface) {
-                $postTypes[] = $typeResolverPicker->getPostType();
+                $customPostTypes[] = $typeResolverPicker->getCustomPostType();
             }
         }
-        return $postTypes;
+        return $customPostTypes;
     }
 }

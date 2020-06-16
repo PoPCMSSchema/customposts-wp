@@ -18,5 +18,5 @@ interface CustomPostTypeResolverPickerInterface
      *
      * @return string
      */
-    public function getPostType(): string;
+    public function getCustomPostType(): string;
 }
