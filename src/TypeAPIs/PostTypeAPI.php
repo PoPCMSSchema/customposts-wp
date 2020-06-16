@@ -283,4 +283,15 @@ class PostTypeAPI
         ) = $this->getCustomPostObjectAndID($postObjectOrID);
         return $post->post_type;
     }
+
+    /**
+     * Get the post with provided ID or, if it doesn't exist, null
+     *
+     * @param int $id
+     * @return void
+     */
+    public function getCustomPost($id): ?object
+    {
+        return \get_post($id);
+    }
 }

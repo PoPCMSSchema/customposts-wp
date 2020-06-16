@@ -55,7 +55,10 @@ class CustomPostTypeAPI implements CustomPostTypeAPIInterface
     {
         return $this->getPostTypeAPI()->getCustomPostType($objectOrID);
     }
-
+    public function getCustomPost($id): ?object
+    {
+        return $this->getPostTypeAPI()->getCustomPost($id);
+    }
     public function getCustomPosts($query, array $options = []): array
     {
         return $this->getPostTypeAPI()->getCustomPosts($query, $options);
