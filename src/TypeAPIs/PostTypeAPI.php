@@ -39,6 +39,15 @@ class PostTypeAPI
         $status = get_post_status($postObjectOrID);
         return CustomPostTypeAPIUtils::convertPostStatusFromCMSToPoP($status);
     }
+
+    public function getCustomPosts($query, array $options = []): array
+    {
+        return $this->getPosts($query, $options);
+    }
+    public function getCustomPostCount(array $query = [], array $options = []): int
+    {
+        return $this->getPostCount($query, $options);
+    }
     public function getPosts($query, array $options = []): array
     {
         // Convert the parameters
