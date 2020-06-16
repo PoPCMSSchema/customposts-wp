@@ -266,4 +266,12 @@ class PostTypeAPI
         ) = $this->getCustomPostObjectAndID($postObjectOrID);
         return $post->post_modified;
     }
+    public function getCustomPostType($postObjectOrID): string
+    {
+        list(
+            $post,
+            $postID,
+        ) = $this->getCustomPostObjectAndID($postObjectOrID);
+        return $post->post_type;
+    }
 }
