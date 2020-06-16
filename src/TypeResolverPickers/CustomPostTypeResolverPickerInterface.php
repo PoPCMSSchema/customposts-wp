@@ -12,7 +12,7 @@ interface CustomPostTypeResolverPickerInterface
      * @param [type] $post
      * @return void
      */
-    public function maybeCast($post);
+    public function maybeCast($customPost);
     /**
      * Get the post type of the Type (eg: Post is "post", Media is "attachment", etc)
      *
