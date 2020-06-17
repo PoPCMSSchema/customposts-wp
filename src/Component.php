@@ -6,6 +6,7 @@ namespace PoP\CustomPostsWP;
 
 use PoP\Root\Component\AbstractComponent;
 use PoP\Root\Component\YAMLServicesTrait;
+use PoP\CustomPostsWP\Config\ServiceConfiguration;
 
 /**
  * Initialize component
@@ -33,5 +34,6 @@ class Component extends AbstractComponent
     ): void {
         parent::doInitialize($configuration, $skipSchema, $skipSchemaComponentClasses);
         self::initYAMLServices(dirname(__DIR__));
+        ServiceConfiguration::initialize();
     }
 }

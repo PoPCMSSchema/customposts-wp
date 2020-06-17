@@ -98,7 +98,7 @@ class PostTypeAPI
             // // Make sure they are public, to avoid an external query requesting forbidden data
             // $postTypes = array_intersect(
             //     $query['post-types'],
-            //     $this->getPostTypes(['public' => true])
+            //     $this->getCustomPostTypes(['public' => true])
             // );
             // // If there are no valid postTypes, then return no results
             // // By not adding the post type, WordPress will fetch a "post"
@@ -187,7 +187,7 @@ class PostTypeAPI
         );
         return $query;
     }
-    public function getPostTypes($query = array()): array
+    public function getCustomPostTypes(array $query = array()): array
     {
         // Convert the parameters
         if (isset($query['exclude-from-search'])) {
