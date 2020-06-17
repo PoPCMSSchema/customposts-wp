@@ -223,6 +223,25 @@ class CustomPostTypeAPI implements CustomPostTypeAPIInterface
         list($permalink, $post_name) = \get_sample_permalink($customPostID, null, null);
         return str_replace(['%pagename%', '%postname%'], $post_name, $permalink);
     }
+
+
+    public function getSlug($customPostObjectOrID): ?string
+    {
+        list(
+            $customPost,
+            $customPostID,
+        ) = $this->getCustomPostObjectAndID($customPostObjectOrID);
+        if ($this->getStatus($customPostObjectOrID) == Status::PUBLISHED) {
+            return $customPost->post_name;
+        }
+
+        // Function get_sample_permalink comes from the file below, so it must be included
+        // Code below copied from `function get_sample_permalink_html`
+        include_once ABSPATH . 'wp-admin/includes/post.php';
+        list($permalink, $post_name) = \get_sample_permalink($customPostID, null, null);
+        return $post_name;
+    }
+
     public function getExcerpt($customPostObjectOrID): ?string
     {
         return \get_the_excerpt($customPostObjectOrID);
