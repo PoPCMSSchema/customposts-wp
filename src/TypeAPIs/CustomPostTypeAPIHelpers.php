@@ -9,18 +9,18 @@ namespace PoP\CustomPostsWP\TypeAPIs;
  */
 class CustomPostTypeAPIHelpers
 {
-    public static function getCustomPostObjectAndID($postObjectOrID): array
+    public static function getCustomPostObjectAndID($customPostObjectOrID): array
     {
-        if (is_object($postObjectOrID)) {
-            $post = $postObjectOrID;
-            $postID = $post->ID;
+        if (is_object($customPostObjectOrID)) {
+            $customPost = $customPostObjectOrID;
+            $customPostID = $customPost->ID;
         } else {
-            $postID = $postObjectOrID;
-            $post = \get_post($postID);
+            $customPostID = $customPostObjectOrID;
+            $customPost = \get_post($customPostID);
         }
         return [
-            $post,
-            $postID,
+            $customPost,
+            $customPostID,
         ];
     }
 }

@@ -27,17 +27,17 @@ class CustomPostTypeAPI implements CustomPostTypeAPIInterface
     /**
      * Return the post's ID
      *
-     * @param object $post
+     * @param object $customPost
      * @return void
      */
-    public function getID($post)
+    public function getID($customPost)
     {
-        return $post->ID;
+        return $customPost->ID;
     }
 
-    public function getStatus($postObjectOrID): ?string
+    public function getStatus($customPostObjectOrID): ?string
     {
-        $status = get_post_status($postObjectOrID);
+        $status = get_post_status($customPostObjectOrID);
         return CustomPostTypeAPIUtils::convertPostStatusFromCMSToPoP($status);
     }
 
@@ -207,55 +207,55 @@ class CustomPostTypeAPI implements CustomPostTypeAPIInterface
         return \get_post_types($query);
     }
 
-    public function getPermalink($postObjectOrID): ?string
+    public function getPermalink($customPostObjectOrID): ?string
     {
         list(
-            $post,
-            $postID,
-        ) = $this->getCustomPostObjectAndID($postObjectOrID);
-        if ($this->getStatus($postObjectOrID) == Status::PUBLISHED) {
-            return \get_permalink($postID);
+            $customPost,
+            $customPostID,
+        ) = $this->getCustomPostObjectAndID($customPostObjectOrID);
+        if ($this->getStatus($customPostObjectOrID) == Status::PUBLISHED) {
+            return \get_permalink($customPostID);
         }
 
         // Function get_sample_permalink comes from the file below, so it must be included
         // Code below copied from `function get_sample_permalink_html`
         include_once ABSPATH . 'wp-admin/includes/post.php';
-        list($permalink, $post_name) = \get_sample_permalink($postID, null, null);
+        list($permalink, $post_name) = \get_sample_permalink($customPostID, null, null);
         return str_replace(['%pagename%', '%postname%'], $post_name, $permalink);
     }
-    public function getExcerpt($postObjectOrID): ?string
+    public function getExcerpt($customPostObjectOrID): ?string
     {
-        return \get_the_excerpt($postObjectOrID);
+        return \get_the_excerpt($customPostObjectOrID);
     }
-    protected function getCustomPostObjectAndID($postObjectOrID): array
+    protected function getCustomPostObjectAndID($customPostObjectOrID): array
     {
-        return CustomPostTypeAPIHelpers::getCustomPostObjectAndID($postObjectOrID);
-    }
-
-    public function getTitle($postObjectOrID): ?string
-    {
-        list(
-            $post,
-            $postID,
-        ) = $this->getCustomPostObjectAndID($postObjectOrID);
-        return apply_filters('the_title', $post->post_title, $postID);
+        return CustomPostTypeAPIHelpers::getCustomPostObjectAndID($customPostObjectOrID);
     }
 
-    public function getContent($postObjectOrID): ?string
-    {
-        list(
-            $post,
-            $postID,
-        ) = $this->getCustomPostObjectAndID($postObjectOrID);
-        return apply_filters('the_content', $post->post_content);
-    }
-
-    public function getPlainTextContent($postObjectOrID): string
+    public function getTitle($customPostObjectOrID): ?string
     {
         list(
             $customPost,
             $customPostID,
-        ) = $this->getCustomPostObjectAndID($postObjectOrID);
+        ) = $this->getCustomPostObjectAndID($customPostObjectOrID);
+        return apply_filters('the_title', $customPost->post_title, $customPostID);
+    }
+
+    public function getContent($customPostObjectOrID): ?string
+    {
+        list(
+            $customPost,
+            $customPostID,
+        ) = $this->getCustomPostObjectAndID($customPostObjectOrID);
+        return apply_filters('the_content', $customPost->post_content);
+    }
+
+    public function getPlainTextContent($customPostObjectOrID): string
+    {
+        list(
+            $customPost,
+            $customPostID,
+        ) = $this->getCustomPostObjectAndID($customPostObjectOrID);
 
         // Basic content: remove embeds, shortcodes, and tags
         // Remove the embed functionality, and then add again
@@ -270,30 +270,30 @@ class CustomPostTypeAPI implements CustomPostTypeAPIInterface
         return strip_tags($ret);
     }
 
-    public function getPublishedDate($postObjectOrID): ?string
+    public function getPublishedDate($customPostObjectOrID): ?string
     {
         list(
-            $post,
-            $postID,
-        ) = $this->getCustomPostObjectAndID($postObjectOrID);
-        return $post->post_date;
+            $customPost,
+            $customPostID,
+        ) = $this->getCustomPostObjectAndID($customPostObjectOrID);
+        return $customPost->post_date;
     }
 
-    public function getModifiedDate($postObjectOrID): ?string
+    public function getModifiedDate($customPostObjectOrID): ?string
     {
         list(
-            $post,
-            $postID,
-        ) = $this->getCustomPostObjectAndID($postObjectOrID);
-        return $post->post_modified;
+            $customPost,
+            $customPostID,
+        ) = $this->getCustomPostObjectAndID($customPostObjectOrID);
+        return $customPost->post_modified;
     }
-    public function getCustomPostType($postObjectOrID): string
+    public function getCustomPostType($customPostObjectOrID): string
     {
         list(
-            $post,
-            $postID,
-        ) = $this->getCustomPostObjectAndID($postObjectOrID);
-        return $post->post_type;
+            $customPost,
+            $customPostID,
+        ) = $this->getCustomPostObjectAndID($customPostObjectOrID);
+        return $customPost->post_type;
     }
 
     /**
