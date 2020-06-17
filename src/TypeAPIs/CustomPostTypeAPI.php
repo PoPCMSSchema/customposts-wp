@@ -250,6 +250,26 @@ class CustomPostTypeAPI implements CustomPostTypeAPIInterface
         return apply_filters('the_content', $post->post_content);
     }
 
+    public function getPlainTextContent($postObjectOrID): string
+    {
+        list(
+            $customPost,
+            $customPostID,
+        ) = $this->getCustomPostObjectAndID($postObjectOrID);
+
+        // Basic content: remove embeds, shortcodes, and tags
+        // Remove the embed functionality, and then add again
+        $wp_embed = $GLOBALS['wp_embed'];
+        HooksAPIFacade::getInstance()->removeFilter('the_content', array( $wp_embed, 'autoembed' ), 8);
+
+        // Do not allow HTML tags or shortcodes
+        $ret = \strip_shortcodes($customPost->post_content);
+        $ret = HooksAPIFacade::getInstance()->applyFilters('the_content', $ret);
+        HooksAPIFacade::getInstance()->addFilter('the_content', array( $wp_embed, 'autoembed' ), 8);
+
+        return strip_tags($ret);
+    }
+
     public function getPublishedDate($postObjectOrID): ?string
     {
         list(
