@@ -9,10 +9,10 @@ interface CustomPostTypeResolverPickerInterface
     /**
      * Maybe cast the object of type `WP_Post` returned by function `get_posts`, to a different object type
      *
-     * @param [type] $post
-     * @return void
+     * @param array $customPosts An array with "key" the ID, "value" the object
+     * @return array
      */
-    public function maybeCast($customPost);
+    public function maybeCastCustomPosts(array $customPosts): array;
     /**
      * Get the post type of the Type (eg: Post is "post", Media is "attachment", etc)
      *
