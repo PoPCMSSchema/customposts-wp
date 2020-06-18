@@ -94,7 +94,9 @@ class CustomPostTypeAPI implements CustomPostTypeAPIInterface
                 $query['post_status'] = CustomPostTypeAPIUtils::getCMSPostStatuses();
             }
         }
-        if (isset($query['post-types'])) {
+        // If querying "customPostCount(postTypes:[])" it would reset the list to only "post"
+        // So check that postTypes is not empty
+        if (isset($query['post-types']) && !empty($query['post-types'])) {
             $query['post_type'] = $query['post-types'];
             // // Make sure they are public, to avoid an external query requesting forbidden data
             // $postTypes = array_intersect(
