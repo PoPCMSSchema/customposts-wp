@@ -72,18 +72,18 @@ class CustomPostTypeAPI implements CustomPostTypeAPIInterface
         $this->maybeFilterDataloadQueryArgs($query, $options);
 
         // Convert the parameters
-        if (isset($query['post-status'])) {
-            if (is_array($query['post-status'])) {
+        if (isset($query['custom-post-status'])) {
+            if (is_array($query['custom-post-status'])) {
                 // doing get_posts can accept an array of values
                 $query['post_status'] = array_map(
                     [CustomPostTypeAPIUtils::class, 'convertPostStatusFromPoPToCMS'],
-                    $query['post-status']
+                    $query['custom-post-status']
                 );
             } else {
                 // doing wp_insert/update_post accepts a single value
-                $query['post_status'] = CustomPostTypeAPIUtils::convertPostStatusFromPoPToCMS($query['post-status']);
+                $query['post_status'] = CustomPostTypeAPIUtils::convertPostStatusFromPoPToCMS($query['custom-post-status']);
             }
-            unset($query['post-status']);
+            unset($query['custom-post-status']);
         }
         if ($query['include']) {
             // Transform from array to string
