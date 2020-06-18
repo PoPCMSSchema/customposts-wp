@@ -20,7 +20,7 @@ class Component extends AbstractComponent
     {
         return [
             \PoP\CustomPosts\Component::class,
-            \PoP\EngineWP\Component::class,
+            \PoP\QueriedObjectWP\Component::class,
         ];
     }
 

@@ -20,7 +20,7 @@
     "require": {
         "php" : "~7.1",
         "getpop/customposts": "dev-master",
-        "getpop/engine-wp": "dev-master",
+        "getpop/queriedobject-wp": "dev-master",
         "getpop/migrate-customposts-wp": "dev-master"
     },
     "require-dev": {
