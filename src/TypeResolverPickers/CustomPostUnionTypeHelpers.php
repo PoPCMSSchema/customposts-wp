@@ -18,7 +18,7 @@ class CustomPostUnionTypeHelpers
      *
      * @return void
      */
-    public static function getTargetTypeResolverPostTypes(string $unionTypeResolverClass)
+    public static function getTargetTypeResolverPostTypes(string $unionTypeResolverClass): array
     {
         $customPostTypes = [];
         $instanceManager = InstanceManagerFacade::getInstance();
