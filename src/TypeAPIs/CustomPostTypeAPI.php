@@ -96,11 +96,11 @@ class CustomPostTypeAPI implements CustomPostTypeAPIInterface
         }
         // If querying "customPostCount(postTypes:[])" it would reset the list to only "post"
         // So check that postTypes is not empty
-        if (isset($query['post-types']) && !empty($query['post-types'])) {
-            $query['post_type'] = $query['post-types'];
+        if (isset($query['custom-post-types']) && !empty($query['custom-post-types'])) {
+            $query['post_type'] = $query['custom-post-types'];
             // // Make sure they are public, to avoid an external query requesting forbidden data
             // $postTypes = array_intersect(
-            //     $query['post-types'],
+            //     $query['custom-post-types'],
             //     $this->getCustomPostTypes(['public' => true])
             // );
             // // If there are no valid postTypes, then return no results
@@ -111,7 +111,7 @@ class CustomPostTypeAPI implements CustomPostTypeAPIInterface
             // } else {
             //     $query['include'] = self::NON_EXISTING_ID; // Non-existing ID
             // }
-            unset($query['post-types']);
+            unset($query['custom-post-types']);
         } elseif ($unionTypeResolverClass = $query['types-from-union-resolver-class']) {
             $query['post_type'] = CustomPostUnionTypeHelpers::getTargetTypeResolverPostTypes(
                 $unionTypeResolverClass

@@ -22,7 +22,7 @@ class CustomPostUnionTypeDataLoader extends CustomPostTypeDataLoader
         $query = parent::getObjectQuery($ids);
 
         // From all post types from the member typeResolvers
-        $query['post-types'] = CustomPostUnionTypeHelpers::getTargetTypeResolverPostTypes(CustomPostUnionTypeResolver::class);
+        $query['custom-post-types'] = CustomPostUnionTypeHelpers::getTargetTypeResolverPostTypes(CustomPostUnionTypeResolver::class);
 
         return $query;
     }
@@ -32,7 +32,7 @@ class CustomPostUnionTypeDataLoader extends CustomPostTypeDataLoader
         $query = parent::getDataFromIdsQuery($ids);
 
         // From all post types from the member typeResolvers
-        $query['post-types'] = CustomPostUnionTypeHelpers::getTargetTypeResolverPostTypes(CustomPostUnionTypeResolver::class);
+        $query['custom-post-types'] = CustomPostUnionTypeHelpers::getTargetTypeResolverPostTypes(CustomPostUnionTypeResolver::class);
 
         return $query;
     }
