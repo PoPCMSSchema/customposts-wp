@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace PoP\CustomPostsWP\TypeResolverPickers;
 
-interface CustomPostTypeResolverPickerInterface
+interface CustomPostTypeResolverPickerInterface extends \PoP\CustomPosts\TypeResolverPickers\CustomPostTypeResolverPickerInterface
 {
     /**
      * Maybe cast the object of type `WP_Post` returned by function `get_posts`, to a different object type
@@ -13,10 +13,4 @@ interface CustomPostTypeResolverPickerInterface
      * @return array
      */
     public function maybeCastCustomPosts(array $customPosts): array;
-    /**
-     * Get the post type of the Type (eg: Post is "post", Media is "attachment", etc)
-     *
-     * @return string
-     */
-    public function getCustomPostType(): string;
 }

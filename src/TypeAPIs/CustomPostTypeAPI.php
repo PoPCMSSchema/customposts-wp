@@ -14,7 +14,7 @@ use PoP\QueriedObject\TypeAPIs\TypeAPIUtils;
 use PoP\CustomPostsWP\TypeAPIs\CustomPostTypeAPIUtils;
 use PoP\CustomPostsWP\TypeAPIs\CustomPostTypeAPIHelpers;
 use PoP\ComponentModel\TypeDataResolvers\APITypeDataResolverTrait;
-use PoP\CustomPostsWP\TypeResolverPickers\CustomPostUnionTypeHelpers;
+use PoP\CustomPosts\TypeHelpers\CustomPostUnionTypeHelpers;
 
 /**
  * Methods to interact with the Type, to be implemented by the underlying CMS
@@ -113,7 +113,7 @@ class CustomPostTypeAPI implements CustomPostTypeAPIInterface
             // }
             unset($query['custom-post-types']);
         } elseif ($unionTypeResolverClass = $query['types-from-union-resolver-class']) {
-            $query['post_type'] = CustomPostUnionTypeHelpers::getTargetTypeResolverPostTypes(
+            $query['post_type'] = CustomPostUnionTypeHelpers::getTargetTypeResolverCustomPostTypes(
                 $unionTypeResolverClass
             );
             unset($query['types-from-union-resolver-class']);

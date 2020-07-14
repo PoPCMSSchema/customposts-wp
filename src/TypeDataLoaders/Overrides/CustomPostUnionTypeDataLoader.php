@@ -8,7 +8,7 @@ use PoP\CustomPosts\Facades\CustomPostTypeAPIFacade;
 use PoP\CustomPosts\TypeDataLoaders\CustomPostTypeDataLoader;
 use PoP\CustomPosts\TypeResolvers\CustomPostUnionTypeResolver;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
-use PoP\CustomPostsWP\TypeResolverPickers\CustomPostUnionTypeHelpers;
+use PoP\CustomPosts\TypeHelpers\CustomPostUnionTypeHelpers;
 use PoP\CustomPostsWP\TypeResolverPickers\CustomPostTypeResolverPickerInterface;
 
 /**
@@ -22,7 +22,7 @@ class CustomPostUnionTypeDataLoader extends CustomPostTypeDataLoader
         $query = parent::getObjectQuery($ids);
 
         // From all post types from the member typeResolvers
-        $query['custom-post-types'] = CustomPostUnionTypeHelpers::getTargetTypeResolverPostTypes(CustomPostUnionTypeResolver::class);
+        $query['custom-post-types'] = CustomPostUnionTypeHelpers::getTargetTypeResolverCustomPostTypes(CustomPostUnionTypeResolver::class);
 
         return $query;
     }
@@ -32,7 +32,7 @@ class CustomPostUnionTypeDataLoader extends CustomPostTypeDataLoader
         $query = parent::getDataFromIdsQuery($ids);
 
         // From all post types from the member typeResolvers
-        $query['custom-post-types'] = CustomPostUnionTypeHelpers::getTargetTypeResolverPostTypes(CustomPostUnionTypeResolver::class);
+        $query['custom-post-types'] = CustomPostUnionTypeHelpers::getTargetTypeResolverCustomPostTypes(CustomPostUnionTypeResolver::class);
 
         return $query;
     }
