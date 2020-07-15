@@ -43,14 +43,14 @@ class CustomPostTypeAPI implements CustomPostTypeAPIInterface
 
     public function getCustomPosts($query, array $options = []): array
     {
-        $query = $this->convertPostsQuery($query, $options);
+        $query = $this->convertCustomPostsQuery($query, $options);
         return (array) \get_posts($query);
     }
     public function getCustomPostCount(array $query = [], array $options = []): int
     {
         // Convert parameters
         $options['return-type'] = POP_RETURNTYPE_IDS;
-        $query = $this->convertPostsQuery($query, $options);
+        $query = $this->convertCustomPostsQuery($query, $options);
 
         // All results, no offset
         $query['posts_per_page'] = -1;
@@ -60,7 +60,7 @@ class CustomPostTypeAPI implements CustomPostTypeAPIInterface
         $posts = \get_posts($query);
         return count($posts);
     }
-    protected function convertPostsQuery($query, array $options = []): array
+    protected function convertCustomPostsQuery($query, array $options = []): array
     {
         if ($return_type = $options['return-type']) {
             if ($return_type == POP_RETURNTYPE_IDS) {
@@ -184,7 +184,7 @@ class CustomPostTypeAPI implements CustomPostTypeAPIInterface
         }
 
         $query = HooksAPIFacade::getInstance()->applyFilters(
-            'CMSAPI:posts:query',
+            'CMSAPI:customposts:query',
             $query,
             $options
         );
