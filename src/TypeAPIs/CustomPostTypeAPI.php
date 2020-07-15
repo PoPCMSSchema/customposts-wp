@@ -60,6 +60,16 @@ class CustomPostTypeAPI implements CustomPostTypeAPIInterface
         $posts = \get_posts($query);
         return count($posts);
     }
+    /**
+     * Limit of how many custom posts can be retrieved in the query.
+     * Override this value for specific custom post types
+     *
+     * @return integer
+     */
+    protected function getCustomPostListMaxLimit(): int
+    {
+        return ComponentConfiguration::getCustomPostListMaxLimit();
+    }
     protected function convertCustomPostsQuery($query, array $options = []): array
     {
         if ($return_type = $options['return-type']) {
@@ -132,7 +142,7 @@ class CustomPostTypeAPI implements CustomPostTypeAPIInterface
             if (!$options['skip-max-limit']) {
                 $limit = TypeAPIUtils::getLimitOrMaxLimit(
                     $limit,
-                    ComponentConfiguration::getCustomPostListMaxLimit()
+                    $this->getCustomPostListMaxLimit()
                 );
             }
 
