@@ -70,7 +70,7 @@ class CustomPostTypeAPI implements CustomPostTypeAPIInterface
     {
         return ComponentConfiguration::getCustomPostListMaxLimit();
     }
-    protected function convertCustomPostsQuery($query, array $options = []): array
+    protected function convertCustomPostsQuery(array $query, array $options = []): array
     {
         if ($return_type = $options['return-type']) {
             if ($return_type == POP_RETURNTYPE_IDS) {
@@ -197,12 +197,11 @@ class CustomPostTypeAPI implements CustomPostTypeAPIInterface
             unset($query['date-to-inclusive']);
         }
 
-        $query = HooksAPIFacade::getInstance()->applyFilters(
+        return HooksAPIFacade::getInstance()->applyFilters(
             'CMSAPI:customposts:query',
             $query,
             $options
         );
-        return $query;
     }
     public function getCustomPostTypes(array $query = array()): array
     {
