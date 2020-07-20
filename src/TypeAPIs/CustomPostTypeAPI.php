@@ -336,7 +336,7 @@ class CustomPostTypeAPI implements CustomPostTypeAPIInterface
      * @param int $id
      * @return void
      */
-    public function getCustomPost($id): ?object
+    public function getCustomPost($id)
     {
         return \get_post($id);
     }
