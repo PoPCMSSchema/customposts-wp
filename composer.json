@@ -1,5 +1,5 @@
 {
-    "name": "getpop/customposts-wp",
+    "name": "pop-schema/customposts-wp",
     "type": "library",
     "description": "Implementation for WordPress of contracts from package \"Custom Posts\"",
     "keywords": [
@@ -19,9 +19,9 @@
     "prefer-stable": true,
     "require": {
         "php": "~7.2",
-        "getpop/customposts": "dev-master",
-        "getpop/queriedobject-wp": "dev-master",
-        "getpop/migrate-customposts-wp": "dev-master"
+        "pop-schema/customposts": "dev-master",
+        "pop-schema/queriedobject-wp": "dev-master",
+        "pop-schema/migrate-customposts-wp": "dev-master"
     },
     "require-dev": {
         "phpunit/phpunit": ">=8.5",
@@ -30,12 +30,12 @@
     },
     "autoload": {
         "psr-4": {
-            "PoP\\CustomPostsWP\\": "src"
+            "PoPSchema\\CustomPostsWP\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "PoP\\CustomPostsWP\\": "tests"
+            "PoPSchema\\CustomPostsWP\\": "tests"
         }
     },
     "scripts": {

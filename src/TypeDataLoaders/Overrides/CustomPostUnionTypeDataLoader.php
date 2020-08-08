@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace PoP\CustomPostsWP\TypeDataLoaders\Overrides;
+namespace PoPSchema\CustomPostsWP\TypeDataLoaders\Overrides;
 
-use PoP\CustomPosts\Facades\CustomPostTypeAPIFacade;
-use PoP\CustomPosts\TypeDataLoaders\CustomPostTypeDataLoader;
-use PoP\CustomPosts\TypeResolvers\CustomPostUnionTypeResolver;
+use PoPSchema\CustomPosts\Facades\CustomPostTypeAPIFacade;
+use PoPSchema\CustomPosts\TypeDataLoaders\CustomPostTypeDataLoader;
+use PoPSchema\CustomPosts\TypeResolvers\CustomPostUnionTypeResolver;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
-use PoP\CustomPosts\TypeHelpers\CustomPostUnionTypeHelpers;
-use PoP\CustomPostsWP\TypeResolverPickers\CustomPostTypeResolverPickerInterface;
+use PoPSchema\CustomPosts\TypeHelpers\CustomPostUnionTypeHelpers;
+use PoPSchema\CustomPostsWP\TypeResolverPickers\CustomPostTypeResolverPickerInterface;
 
 /**
  * In the context of WordPress, "Custom Posts" are all posts (eg: posts, pages, attachments, events, etc)

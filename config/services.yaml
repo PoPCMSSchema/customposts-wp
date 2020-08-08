@@ -1,4 +1,4 @@
 services:
     custompost_type_api:
-        class: \PoP\CustomPostsWP\TypeAPIs\CustomPostTypeAPI
+        class: \PoPSchema\CustomPostsWP\TypeAPIs\CustomPostTypeAPI
         public: true

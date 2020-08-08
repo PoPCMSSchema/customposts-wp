@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace PoP\CustomPostsWP\TypeAPIs;
+namespace PoPSchema\CustomPostsWP\TypeAPIs;
 
-use PoP\CustomPosts\Types\Status;
+use PoPSchema\CustomPosts\Types\Status;
 
 class CustomPostTypeAPIUtils
 {

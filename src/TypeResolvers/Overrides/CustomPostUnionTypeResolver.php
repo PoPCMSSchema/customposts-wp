@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace PoP\CustomPostsWP\TypeResolvers\Overrides;
+namespace PoPSchema\CustomPostsWP\TypeResolvers\Overrides;
 
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
-use PoP\CustomPostsWP\TypeDataLoaders\Overrides\CustomPostUnionTypeDataLoader;
+use PoPSchema\CustomPostsWP\TypeDataLoaders\Overrides\CustomPostUnionTypeDataLoader;
 
-class CustomPostUnionTypeResolver extends \PoP\CustomPosts\TypeResolvers\CustomPostUnionTypeResolver
+class CustomPostUnionTypeResolver extends \PoPSchema\CustomPosts\TypeResolvers\CustomPostUnionTypeResolver
 {
     public function getTypeDataLoaderClass(): string
     {

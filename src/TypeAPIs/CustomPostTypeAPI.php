@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace PoP\CustomPostsWP\TypeAPIs;
+namespace PoPSchema\CustomPostsWP\TypeAPIs;
 
-use PoP\CustomPosts\TypeAPIs\CustomPostTypeAPIInterface;
+use PoPSchema\CustomPosts\TypeAPIs\CustomPostTypeAPIInterface;
 use function apply_filters;
 use function get_post_status;
-use PoP\CustomPosts\Types\Status;
+use PoPSchema\CustomPosts\Types\Status;
 use PoP\Hooks\Facades\HooksAPIFacade;
-use PoP\CustomPosts\ComponentConfiguration;
-use PoP\QueriedObject\TypeAPIs\TypeAPIUtils;
-use PoP\CustomPostsWP\TypeAPIs\CustomPostTypeAPIUtils;
-use PoP\CustomPostsWP\TypeAPIs\CustomPostTypeAPIHelpers;
+use PoPSchema\CustomPosts\ComponentConfiguration;
+use PoPSchema\QueriedObject\TypeAPIs\TypeAPIUtils;
+use PoPSchema\CustomPostsWP\TypeAPIs\CustomPostTypeAPIUtils;
+use PoPSchema\CustomPostsWP\TypeAPIs\CustomPostTypeAPIHelpers;
 use PoP\ComponentModel\TypeDataResolvers\APITypeDataResolverTrait;
-use PoP\CustomPosts\TypeHelpers\CustomPostUnionTypeHelpers;
+use PoPSchema\CustomPosts\TypeHelpers\CustomPostUnionTypeHelpers;
 
 /**
  * Methods to interact with the Type, to be implemented by the underlying CMS
