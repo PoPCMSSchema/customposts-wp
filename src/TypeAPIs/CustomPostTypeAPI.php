@@ -15,6 +15,7 @@ use PoPSchema\CustomPostsWP\TypeAPIs\CustomPostTypeAPIUtils;
 use PoPSchema\CustomPostsWP\TypeAPIs\CustomPostTypeAPIHelpers;
 use PoP\ComponentModel\TypeDataResolvers\APITypeDataResolverTrait;
 use PoPSchema\CustomPosts\TypeHelpers\CustomPostUnionTypeHelpers;
+use PoPSchema\SchemaCommons\DataLoading\ReturnTypes;
 
 /**
  * Methods to interact with the Type, to be implemented by the underlying CMS
@@ -49,7 +50,7 @@ class CustomPostTypeAPI implements CustomPostTypeAPIInterface
     public function getCustomPostCount(array $query = [], array $options = []): int
     {
         // Convert parameters
-        $options['return-type'] = POP_RETURNTYPE_IDS;
+        $options['return-type'] = ReturnTypes::IDS;
         $query = $this->convertCustomPostsQuery($query, $options);
 
         // All results, no offset
@@ -73,7 +74,7 @@ class CustomPostTypeAPI implements CustomPostTypeAPIInterface
     protected function convertCustomPostsQuery(array $query, array $options = []): array
     {
         if ($return_type = $options['return-type']) {
-            if ($return_type == POP_RETURNTYPE_IDS) {
+            if ($return_type == ReturnTypes::IDS) {
                 $query['fields'] = 'ids';
             }
         }
