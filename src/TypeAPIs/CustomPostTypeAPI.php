@@ -42,7 +42,12 @@ class CustomPostTypeAPI implements CustomPostTypeAPIInterface
         return CustomPostTypeAPIUtils::convertPostStatusFromCMSToPoP($status);
     }
 
-    public function getCustomPosts($query, array $options = []): array
+    /**
+     * @param array<string, mixed> $query
+     * @param array<string, mixed> $options
+     * @return array<string, mixed>
+     */
+    public function getCustomPosts(array $query, array $options = []): array
     {
         $query = $this->convertCustomPostsQuery($query, $options);
         return (array) \get_posts($query);
@@ -71,6 +76,11 @@ class CustomPostTypeAPI implements CustomPostTypeAPIInterface
     {
         return ComponentConfiguration::getCustomPostListMaxLimit();
     }
+    /**
+     * @param array<string, mixed> $query
+     * @param array<string, mixed> $options
+     * @return array<string, mixed>
+     */
     protected function convertCustomPostsQuery(array $query, array $options = []): array
     {
         if ($return_type = $options['return-type']) {
