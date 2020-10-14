@@ -6,6 +6,7 @@ namespace PoPSchema\CustomPostsWP\Config;
 
 use PoP\Root\Component\PHPServiceConfigurationTrait;
 use PoP\ComponentModel\Container\ContainerBuilderUtils;
+use PoP\ComponentModel\Instances\InstanceManagerInterface;
 
 class ServiceConfiguration
 {
@@ -14,14 +15,14 @@ class ServiceConfiguration
     protected static function configure(): void
     {
         ContainerBuilderUtils::injectValuesIntoService(
-            'instance_manager',
+            InstanceManagerInterface::class,
             'overrideClass',
             \PoPSchema\CustomPosts\TypeDataLoaders\CustomPostUnionTypeDataLoader::class,
             \PoPSchema\CustomPostsWP\TypeDataLoaders\Overrides\CustomPostUnionTypeDataLoader::class
         );
 
         ContainerBuilderUtils::injectValuesIntoService(
-            'instance_manager',
+            InstanceManagerInterface::class,
             'overrideClass',
             \PoPSchema\CustomPosts\TypeResolvers\CustomPostUnionTypeResolver::class,
             \PoPSchema\CustomPostsWP\TypeResolvers\Overrides\CustomPostUnionTypeResolver::class
