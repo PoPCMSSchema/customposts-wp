@@ -16,7 +16,7 @@ class CustomPostTypeAPIUtils
     ];
     protected static $popToCMSPostStatusConversion;
 
-    public static function init()
+    public static function init(): void
     {
         if (is_null(self::$popToCMSPostStatusConversion)) {
             self::$popToCMSPostStatusConversion = array_flip(self::$cmsToPoPPostStatusConversion);
