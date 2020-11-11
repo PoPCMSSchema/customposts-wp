@@ -93,18 +93,18 @@ class CustomPostTypeAPI implements CustomPostTypeAPIInterface
         $this->maybeFilterDataloadQueryArgs($query, $options);
 
         // Convert the parameters
-        if (isset($query['custom-post-status'])) {
-            if (is_array($query['custom-post-status'])) {
+        if (isset($query['status'])) {
+            if (is_array($query['status'])) {
                 // doing get_posts can accept an array of values
                 $query['post_status'] = array_map(
                     [CustomPostTypeAPIUtils::class, 'convertPostStatusFromPoPToCMS'],
-                    $query['custom-post-status']
+                    $query['status']
                 );
             } else {
                 // doing wp_insert/update_post accepts a single value
-                $query['post_status'] = CustomPostTypeAPIUtils::convertPostStatusFromPoPToCMS($query['custom-post-status']);
+                $query['post_status'] = CustomPostTypeAPIUtils::convertPostStatusFromPoPToCMS($query['status']);
             }
-            unset($query['custom-post-status']);
+            unset($query['status']);
         }
         if ($query['include']) {
             // Transform from array to string
@@ -117,11 +117,11 @@ class CustomPostTypeAPI implements CustomPostTypeAPIInterface
         }
         // If querying "customPostCount(postTypes:[])" it would reset the list to only "post"
         // So check that postTypes is not empty
-        if (isset($query['custom-post-types']) && !empty($query['custom-post-types'])) {
-            $query['post_type'] = $query['custom-post-types'];
+        if (isset($query['custompost-types']) && !empty($query['custompost-types'])) {
+            $query['post_type'] = $query['custompost-types'];
             // // Make sure they are public, to avoid an external query requesting forbidden data
             // $postTypes = array_intersect(
-            //     $query['custom-post-types'],
+            //     $query['custompost-types'],
             //     $this->getCustomPostTypes(['public' => true])
             // );
             // // If there are no valid postTypes, then return no results
@@ -132,7 +132,7 @@ class CustomPostTypeAPI implements CustomPostTypeAPIInterface
             // } else {
             //     $query['include'] = self::NON_EXISTING_ID; // Non-existing ID
             // }
-            unset($query['custom-post-types']);
+            unset($query['custompost-types']);
         } elseif ($unionTypeResolverClass = $query['types-from-union-resolver-class']) {
             $query['post_type'] = CustomPostUnionTypeHelpers::getTargetTypeResolverCustomPostTypes(
                 $unionTypeResolverClass
