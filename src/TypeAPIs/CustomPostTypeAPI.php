@@ -83,7 +83,7 @@ class CustomPostTypeAPI implements CustomPostTypeAPIInterface
      */
     protected function convertCustomPostsQuery(array $query, array $options = []): array
     {
-        if ($return_type = $options['return-type']) {
+        if ($return_type = $options['return-type'] ?? null) {
             if ($return_type == ReturnTypes::IDS) {
                 $query['fields'] = 'ids';
             }
@@ -106,7 +106,7 @@ class CustomPostTypeAPI implements CustomPostTypeAPIInterface
             }
             unset($query['status']);
         }
-        if ($query['include']) {
+        if ($query['include'] ?? null) {
             // Transform from array to string
             $query['include'] = implode(',', $query['include']);
 
@@ -150,7 +150,7 @@ class CustomPostTypeAPI implements CustomPostTypeAPIInterface
             // Maybe restrict the limit, if higher than the max limit
             // Allow to not limit by max when querying from within the application
             $limit = $query['limit'];
-            if (!$options['skip-max-limit']) {
+            if (!isset($options['skip-max-limit']) || !$options['skip-max-limit']) {
                 $limit = TypeAPIUtils::getLimitOrMaxLimit(
                     $limit,
                     $this->getCustomPostListMaxLimit()
