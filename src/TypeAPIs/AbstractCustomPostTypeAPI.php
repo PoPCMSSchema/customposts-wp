@@ -11,6 +11,7 @@ use PoPSchema\CustomPosts\Types\Status;
 use PoPSchema\CustomPostsWP\TypeAPIs\CustomPostTypeAPIHelpers;
 use PoPSchema\CustomPostsWP\TypeAPIs\CustomPostTypeAPIUtils;
 use PoPSchema\SchemaCommons\DataLoading\ReturnTypes;
+use PoPSchema\SchemaCommons\Constants\QueryOptions;
 use WP_Post;
 
 use function get_post_status;
@@ -51,6 +52,16 @@ abstract class AbstractCustomPostTypeAPI extends UpstreamAbstractCustomPostTypeA
     }
 
     /**
+     * Query args that must always be in the query
+     *
+     * @return array<string, mixed>
+     */
+    public function getCustomPostQueryRequiredArgs(): array
+    {
+        return [];
+    }
+
+    /**
      * @param array<string, mixed> $query
      * @param array<string, mixed> $options
      * @return object[]
@@ -63,7 +74,7 @@ abstract class AbstractCustomPostTypeAPI extends UpstreamAbstractCustomPostTypeA
     public function getCustomPostCount(array $query = [], array $options = []): int
     {
         // Convert parameters
-        $options['return-type'] = ReturnTypes::IDS;
+        $options[QueryOptions::RETURN_TYPE] = ReturnTypes::IDS;
         $query = $this->convertCustomPostsQuery($query, $options);
 
         // All results, no offset
@@ -89,14 +100,16 @@ abstract class AbstractCustomPostTypeAPI extends UpstreamAbstractCustomPostTypeA
      */
     protected function convertCustomPostsQuery(array $query, array $options = []): array
     {
-        if ($return_type = $options['return-type'] ?? null) {
-            if ($return_type == ReturnTypes::IDS) {
-                $query['fields'] = 'ids';
-            }
+        if (($options[QueryOptions::RETURN_TYPE] ?? null) === ReturnTypes::IDS) {
+            $query['fields'] = 'ids';
         }
 
-        // If param "status" in $query is not passed, it defaults to "publish"
-        $query = array_merge($this->getCustomPostQueryDefaults(), $query);
+        // The query overrides the defaults, and is overriden by the required args
+        $query = array_merge(
+            $this->getCustomPostQueryDefaults(),
+            $query,
+            $this->getCustomPostQueryRequiredArgs(),
+        );
 
         // Convert the parameters
         if (isset($query['status'])) {
@@ -131,6 +144,10 @@ abstract class AbstractCustomPostTypeAPI extends UpstreamAbstractCustomPostTypeA
             );
             unset($query['types-from-union-resolver-class']);
         }
+        // Querying "attachment" doesn't work in an array!
+        if (isset($query['post_type']) && is_array($query['post_type'])) {
+            $query['post_type'] = $query['post_type'][0];
+        }
         if (isset($query['offset'])) {
             // Same param name, so do nothing
         }
@@ -138,7 +155,7 @@ abstract class AbstractCustomPostTypeAPI extends UpstreamAbstractCustomPostTypeA
             // Maybe restrict the limit, if higher than the max limit
             // Allow to not limit by max when querying from within the application
             $limit = (int) $query['limit'];
-            if (!isset($options['skip-max-limit']) || !$options['skip-max-limit']) {
+            if (!isset($options[QueryOptions::SKIP_MAX_LIMIT]) || !$options[QueryOptions::SKIP_MAX_LIMIT]) {
                 $limit = $this->queriedObjectHelperService->getLimitOrMaxLimit(
                     $limit,
                     $this->getCustomPostListMaxLimit()
