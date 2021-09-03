@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace PoPSchema\CustomPostsWP\TypeResolverPickers;
+namespace PoPSchema\CustomPostsWP\ObjectTypeResolverPickers;
 
 trait NoCastCustomPostTypeResolverPickerTrait
 {
