@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace PoPSchema\CustomPostsWP\Overrides\RelationalTypeDataLoaders\UnionType;
 
-use Symfony\Contracts\Service\Attribute\Required;
 use PoPSchema\CustomPosts\RelationalTypeDataLoaders\ObjectType\CustomPostTypeDataLoader;
 use PoPSchema\CustomPosts\RelationalTypeDataLoaders\UnionType\CustomPostUnionTypeDataLoader as UpstreamCustomPostUnionTypeDataLoader;
 use PoPSchema\CustomPosts\TypeAPIs\CustomPostTypeAPIInterface;
 use PoPSchema\CustomPosts\TypeHelpers\CustomPostUnionTypeHelpers;
 use PoPSchema\CustomPostsWP\ObjectTypeResolverPickers\CustomPostObjectTypeResolverPickerInterface;
+use Symfony\Contracts\Service\Attribute\Required;
 
 /**
  * In the context of WordPress, "Custom Posts" are all posts (eg: posts, pages, attachments, events, etc)
@@ -21,7 +21,7 @@ class CustomPostUnionTypeDataLoader extends UpstreamCustomPostUnionTypeDataLoade
     protected CustomPostTypeAPIInterface $customPostTypeAPI;
 
     #[Required]
-    public function autowireCustomPostsWPCustomPostUnionTypeDataLoader(
+    final public function autowireCustomPostsWPCustomPostUnionTypeDataLoader(
         CustomPostTypeDataLoader $customPostTypeDataLoader,
         CustomPostTypeAPIInterface $customPostTypeAPI,
     ): void {
