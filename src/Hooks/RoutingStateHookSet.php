@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace PoPSchema\CustomPostsWP\Hooks;
 
-use PoP\BasicService\AbstractHookSet;
+use PoP\Root\App;
+use PoP\Root\Hooks\AbstractHookSet;
+use PoP\RoutingWP\HookNames;
 use PoPSchema\CustomPosts\Routing\RouteNatures;
 use WP_Query;
 
@@ -12,8 +14,8 @@ class RoutingStateHookSet extends AbstractHookSet
 {
     protected function init(): void
     {
-        $this->getHooksAPI()->addFilter(
-            'WPCMSRoutingState:nature',
+        App::addFilter(
+            HookNames::NATURE,
             [$this, 'getNature'],
             10,
             2
