@@ -7,6 +7,8 @@ namespace PoPCMSSchema\CustomPostsWP\TypeAPIs;
 use PoPCMSSchema\CustomPostsWP\Constants\QueryOptions;
 use PoPCMSSchema\CustomPosts\Constants\CustomPostOrderBy;
 use PoPCMSSchema\CustomPosts\Enums\CustomPostStatus;
+use PoPCMSSchema\CustomPosts\Module;
+use PoPCMSSchema\CustomPosts\ModuleConfiguration;
 use PoPCMSSchema\CustomPosts\TypeAPIs\AbstractCustomPostTypeAPI as UpstreamAbstractCustomPostTypeAPI;
 use PoPCMSSchema\SchemaCommons\DataLoading\ReturnTypes;
 use PoPSchema\SchemaCommons\Constants\QueryOptions as SchemaCommonsQueryOptions;
@@ -201,17 +203,18 @@ abstract class AbstractCustomPostTypeAPI extends UpstreamAbstractCustomPostTypeA
         } else {
             /**
              * If not adding the custom post types, WordPress only uses "post",
-             * so querying by CPT would fail loading data
+             * so querying by CPT would fail loading data.
+             *
+             * There are 2 possibilities for loading private data:
+             *
+             *   - 1. By Gato GraphQL to load its own data ("ForPluginOwnUse"), via the query options
+             *   - 2. By a standalone plugin that does not expose public endpoints, via customizing module configuration
              */
-            $allowQueryingPrivateCPTs = $options[QueryOptions::ALLOW_QUERYING_PRIVATE_CPTS] ?? false;
-            if ($allowQueryingPrivateCPTs) {
-                $query['post_type'] = 'any';
-            } else {
-                $customPostTypeOptions = [
-                    'publicly-queryable' => true,
-                ];
-                $query['post_type'] = $this->getCustomPostTypes($customPostTypeOptions);
-            }
+            /** @var ModuleConfiguration */
+            $moduleConfiguration = App::getModule(Module::class)->getConfiguration();
+            $allowQueryingPrivateCPTs = $options[QueryOptions::ALLOW_QUERYING_PRIVATE_CPTS] ?? $moduleConfiguration->allowQueryingPrivateCPTs();
+            $customPostTypeOptions = $allowQueryingPrivateCPTs ? [] : ['publicly-queryable' => true];
+            $query['post_type'] = $this->getCustomPostTypes($customPostTypeOptions);
         }
         // Querying "attachment" doesn't work in an array!
         if (is_array($query['post_type']) && count($query['post_type']) === 1) {
