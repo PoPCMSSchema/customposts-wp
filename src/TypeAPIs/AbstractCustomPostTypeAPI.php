@@ -469,7 +469,7 @@ abstract class AbstractCustomPostTypeAPI extends UpstreamAbstractCustomPostTypeA
         if (is_object($customPostObjectOrID)) {
             /** @var WP_Post */
             $customPost = $customPostObjectOrID;
-            return (int) $customPost->ID;
+            return $customPost->ID;
         }
         return (int)$customPostObjectOrID;
     }
