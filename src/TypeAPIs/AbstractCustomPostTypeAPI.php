@@ -6,7 +6,6 @@ namespace PoPCMSSchema\CustomPostsWP\TypeAPIs;
 
 use PoPCMSSchema\CustomPostsWP\Constants\QueryOptions;
 use PoPCMSSchema\CustomPosts\Constants\CustomPostOrderBy;
-use PoPCMSSchema\CustomPosts\Constants\HookNames;
 use PoPCMSSchema\CustomPosts\Enums\CustomPostStatus;
 use PoPCMSSchema\CustomPosts\Module;
 use PoPCMSSchema\CustomPosts\ModuleConfiguration;
@@ -506,11 +505,12 @@ abstract class AbstractCustomPostTypeAPI extends UpstreamAbstractCustomPostTypeA
 
     public function getContent(string|int|object $customPostObjectOrID): ?string
     {
-        $rawContent = $this->getRawContent($customPostObjectOrID);
-        if ($rawContent === null) {
+        /** @var WP_Post|null */
+        $customPost = $this->getCustomPostObject($customPostObjectOrID);
+        if ($customPost === null) {
             return null;
         }
-        return \apply_filters('the_content', $rawContent);
+        return \apply_filters('the_content', $customPost->post_content);
     }
 
     public function getRawContent(string|int|object $customPostObjectOrID): ?string
@@ -521,12 +521,7 @@ abstract class AbstractCustomPostTypeAPI extends UpstreamAbstractCustomPostTypeA
             return null;
         }
 
-        /** @var string */
-        return App::applyFilters(
-            HookNames::CUSTOMPOST_RAW_CONTENT,
-            $customPost->post_content,
-            $customPost
-        );
+        return $customPost->post_content;
     }
 
     public function getPublishedDate(string|int|object $customPostObjectOrID, bool $gmt = false): ?string
